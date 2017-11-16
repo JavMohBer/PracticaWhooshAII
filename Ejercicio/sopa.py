@@ -4,6 +4,12 @@
 from bs4 import BeautifulSoup
 from pip._vendor import requests
 
+# f = open("", "w")
+#
+# f.write()
+#
+# f.close()
+
 req = requests.get("https://foros.derecho.com/foro/20-Derecho-Civil-General")
 data = req.text
 soup = BeautifulSoup(data,'html.parser')

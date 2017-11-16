@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import tkinter as tk
+import Tkinter as tk
 
 def ventana():
     top = tk.Tk()
