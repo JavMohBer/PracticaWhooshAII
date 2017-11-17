@@ -3,7 +3,7 @@ from Tkinter import *
 import tkMessageBox
 import os
 from whoosh.index import create_in, open_dir
-from whoosh.fields import Schema, TEXT, KEYWORD
+from whoosh.fields import Schema, TEXT, KEYWORD, DATETIME
 from whoosh.qparser import QueryParser
 
 dirdocs = "Docs\Correos"
@@ -60,8 +60,9 @@ def apartado_b():
 
 
 def get_schema():
-    return Schema(remitente=TEXT(stored=True), destinatarios=KEYWORD(stored=True), asunto=TEXT(stored=True),
-                  contenido=TEXT(stored=True))
+    return Schema(numJornada=NUMERIC(stored=True), equipoLocal=TEXT(stored=True), equipoVisitante=TEXT(stored=True),
+                  resultado=TEXT(stored=True), fecha=DATETIME(stored=True), autor=TEXT(stored=True),
+                  titular=TEXT(stored=True), texto=TEXT(stored=True))
 
 
 def add_doc(writer, path, docname):
@@ -76,16 +77,3 @@ def add_doc(writer, path, docname):
     writer.add_document(remitente=rte, destinatarios=dtos, asunto=ast, contenido=ctdo)
 
     # print "Creado indice para fichero " + docname
-
-
-def ventana_principal():
-    top = Tk()
-    indexar = Button(top, text="Indexar", command=apartado_a)
-    indexar.pack(side=TOP)
-    Buscar = Button(top, text="Buscar por Rtte", command=apartado_b)
-    Buscar.pack(side=TOP)
-    top.mainloop()
-
-
-if __name__ == '__main__':
-    ventana_principal()
