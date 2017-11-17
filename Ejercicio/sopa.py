@@ -57,7 +57,10 @@ for elemento in elementos:
         for au in autor:
             autores.append(au.string)
         for t in titular:
-            titulares.append(t.h4.string)
+            if t.h4 is not None:
+                titulares.append(t.h4.string)
+            elif t.h4 is None:
+                titulares.append("")
             titulos.append(t.h3.string)
         for t2 in texto:
             textos.append(t2.find_all("p"))
